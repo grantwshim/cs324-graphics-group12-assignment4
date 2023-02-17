@@ -1,4 +1,5 @@
 class BabyBirds extends Bird {
+  float scale = 1;
   
   BabyBirds(float x, float y, color c){
     super(x, y, c);
@@ -7,11 +8,14 @@ class BabyBirds extends Bird {
     pushMatrix();
     translate((x - x * size ), (y - y * size));
     scale(size);
-    shape(bird, x + 100, y + 100);
+    shape(bird, x + 100, y - 100);
     shape(bird, x - 100, y + 100);
     popMatrix();
+    pushMatrix();
     wing.translate(-25, 25);
     wing.rotate(PI);
+    bird.rotate(.05);
+    popMatrix();    
   } 
 }
   
