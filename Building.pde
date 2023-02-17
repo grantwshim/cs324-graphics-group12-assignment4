@@ -48,10 +48,7 @@ class Building {
     if (brightness(c) < 64) {
       dim = dim * -1;
     }
-    float b = brightness(c) + dim;
-    c = color (hue(c), saturation(c), b);
 
-    wall.setFill(c);
     
     for (int n = 0; n < windows.size(); n++){
       windowcolor = color (hue(windowcolor), saturation(windowcolor), brightness(windowcolor) + dim);
@@ -67,4 +64,5 @@ class Building {
     }
   }
 }
+    
     
