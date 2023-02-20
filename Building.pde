@@ -1,7 +1,7 @@
 class Building {
   float x, y, bwidth, bheight;
   color c;
-  color windowcolor = #25EAF2;
+  color windowcolor = #EDEDED;
   PShape building, wall;
   ArrayList<PShape> windows = new ArrayList<PShape>();
 
@@ -31,7 +31,7 @@ class Building {
     //add parts of building
     building.addChild(wall);
     for (int n = 0; n < windows.size(); n++){
-      windows.get(n).setFill(color(#25EAF2));
+      windows.get(n).setFill(color(#EDEDED));
       building.addChild(windows.get(n));
     }    
   }
@@ -41,23 +41,11 @@ class Building {
   }
   
   void transition(){
-    colorMode(HSB, 360, 100, 100);
-    
-    //println(hue(c), brightness(c));
-    float dim = -.005; // need to move this outside
-    if (brightness(c) < 64) {
-      dim = dim * -1;
-    }
 
-    
-    for (int n = 0; n < windows.size(); n++){
-      windowcolor = color (hue(windowcolor), saturation(windowcolor), brightness(windowcolor) + dim);
-      windows.get(n).setFill(windowcolor);  
-    }
     for (int i = 0; i < windows.size(); i++) {
       float light = random(0, 1);
       if (light < .005) {
-        windows.get(i).setFill(#FFFF00);        
+        windows.get(i).setFill(#000000);        
       } else if (light > .005) {
         windows.get(i).setFill(windowcolor);
       }

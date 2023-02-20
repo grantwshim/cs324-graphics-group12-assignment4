@@ -1,41 +1,39 @@
-class Moon extends Star{
-  float theta = radians(360);
-  float theta_velocity = 0.005;
-  
-  
-  Moon(float radius, int r, int g, int b, float speed){
-   super(radius,r,g,b,speed);
-   
-   
-    
+class Moon extends Star {
+  PShape glow;
+  float glow_size = 1;
+  float glow_incr = .01;
+
+  Moon(float radius, int r, int g, int b, float speed) {
+    super( radius, r, g, b, speed);
+    x = width;
+    angle = PI/2;
+    noStroke();
+    fill(r, g, b, 255/2);
+    glow = createShape(ELLIPSE, 0, 0, radius, radius);
   }
 
-  void animate(){
-  
-//similar translation to polar coordinate
-  x=(height*0.5)*cos(theta);
-   y = (height*0.5)*sin(theta);
-  theta+=theta_velocity;
-  if(theta>radians(540))
-  theta = radians(180);
- 
-    // changing color of the moon
-    if(theta >= radians(180) && theta <= radians(360)){
-      if(theta > radians(180) && theta < radians(270))
-        fill(color(r++,g++,b++));
-      
-       if(theta > radians(270) && theta < radians(360)){
-         fill(r--,g--,b--);
-         
-         
-       }
-        
-    ellipseMode(CENTER);
-    ellipse(x,y,radius,radius);
+  void glow() {
+    
+    
+    if (y-height/2<=0) {
+      daytime = false;
+     pushMatrix();
+        translate(x+radius/2, y);
+
+    scale(glow_size);
+    shape(glow);
+    popMatrix();
     }
-  
-  }
 
 
-}
     
+    if (glow_size > 1.5){
+    glow_incr = -glow_incr;
+    }
+    if (glow_size < 1) {
+    glow_incr = -glow_incr;
+    }
+    
+    glow_size += glow_incr;
+  }
+}

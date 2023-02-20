@@ -11,11 +11,7 @@ class BabyBirds extends Bird {
     shape(bird, x + 100, y - 100);
     shape(bird, x - 100, y + 100);
     popMatrix();
-    pushMatrix();
-    wing.translate(-25, 25);
-    wing.rotate(PI);
-    bird.rotate(.05);
-    popMatrix();    
+ 
   } 
 }
   
